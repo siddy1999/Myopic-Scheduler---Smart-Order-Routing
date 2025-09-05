@@ -1,0 +1,112 @@
+# Myopic Scheduler Configuration File
+# This file contains default configuration parameters for the Myopic Scheduler
+
+# Strategy Parameters
+strategy:
+  S: 1000                    # Total order size (shares)
+  T: 15                      # Time horizon (minutes)
+  f: 0.003                   # Fee rate (30 bps)
+  r: [0.002]                 # Rebate rates per venue
+  lambda_u: 0.05             # Underfill penalty
+  lambda_o: 0.05             # Overfill penalty
+  N: 1000                    # Monte Carlo simulations
+
+# Myopic Model Parameters
+myopic:
+  lambda_value: 25000.0      # Market impact coefficient (auto-estimated)
+  beta: 0.693                # Impact decay parameter (ln(2) for 1-hour half-life)
+  volatility: 0.01           # Asset volatility (1%)
+  adv: 1000000.0            # Average Daily Volume
+  T: 6.5                     # Trading session length (hours)
+  Q_0: 0.01                  # Initial position normalization
+
+# Lambda Estimation Settings
+lambda_estimation:
+  agg_periods: [0.1, 1, 2, 5, 10, 30, 60, 120, 300]  # Aggregation periods (seconds)
+  min_r2_threshold: 0.01     # Minimum R² for valid lambda
+  preferred_periods: ['60s', '30s', '10s']  # Preferred periods in order
+  fallback_lambda: 25000.0   # Default lambda if estimation fails
+
+# Risk Management
+risk_management:
+  max_order_size: 1000       # Maximum single order size
+  min_order_size: 1          # Minimum single order size
+  max_impact_threshold: 0.01 # Maximum allowed impact (1%)
+  stop_loss_threshold: 0.05  # Stop loss threshold (5%)
+  position_limit: 10000      # Maximum total position
+
+# Data Quality Filters
+data_filters:
+  min_spread_bps: 1          # Minimum spread (basis points)
+  max_spread_bps: 100        # Maximum spread (basis points)
+  min_volume: 100            # Minimum volume per observation
+  max_price_change: 0.02     # Maximum price change (2%)
+  exclude_auction: true      # Exclude auction periods
+
+# Execution Configuration
+execution:
+  order_freq: 120            # Order frequency (seconds)
+  start_time: ["09", "30"]   # Market start (hour, minute)
+  end_time: ["16", "00"]     # Market end (hour, minute)
+  lookup_duration: [0, 15]   # Lookup window (hours, minutes)
+  use_parallel: true         # Enable parallel processing
+  max_workers: 4             # Number of parallel workers
+
+# Logging Configuration
+logging:
+  level: INFO                # Logging level (DEBUG, INFO, WARNING, ERROR)
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/myopic_scheduler.log"
+  max_size: 10485760         # 10MB
+  backup_count: 5
+
+# Visualization Settings
+visualization:
+  save_plots: true           # Save plots to files
+  plot_format: "png"         # Plot file format
+  dpi: 300                   # Plot resolution
+  style: "seaborn"           # Matplotlib style
+  color_palette: "husl"      # Color palette
+
+# Performance Settings
+performance:
+  chunk_size: 10000          # Data processing chunk size
+  memory_limit: "2GB"        # Memory limit for processing
+  cache_results: true        # Cache intermediate results
+  cache_dir: "cache/"        # Cache directory
+
+# Market Data Settings
+market_data:
+  data_format: "parquet"     # Data format (parquet, csv, hdf5)
+  compression: "snappy"      # Compression algorithm
+  timezone: "UTC"            # Data timezone
+  market_hours:
+    start: "13:30:00"        # Market open time
+    end: "20:00:00"          # Market close time
+    timezone: "UTC"          # Market timezone
+
+# Venue Configuration
+venues:
+  - name: "NDAQ"
+    fee_rate: 0.003
+    rebate_rate: 0.002
+    priority: 1
+  - name: "NYSE"
+    fee_rate: 0.0035
+    rebate_rate: 0.0015
+    priority: 2
+
+# Backtesting Settings
+backtesting:
+  start_date: "2025-01-01"   # Backtest start date
+  end_date: "2025-12-31"     # Backtest end date
+  initial_capital: 1000000   # Initial capital
+  commission: 0.001          # Commission rate
+  slippage: 0.0005          # Slippage rate
+
+# Optimization Settings
+optimization:
+  method: "lookup"           # Optimization method
+  max_iterations: 1000       # Maximum iterations
+  tolerance: 1e-6           # Convergence tolerance
+  solver: "scipy"           # Solver type
