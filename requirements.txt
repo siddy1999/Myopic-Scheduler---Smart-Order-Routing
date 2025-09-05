@@ -1,0 +1,94 @@
+# Core dependencies
+pandas>=1.5.0
+numpy>=1.21.0
+scipy>=1.9.0
+scikit-learn>=1.1.0
+
+# Data processing and analysis
+dask[dataframe]>=2022.8.0
+tqdm>=4.64.0
+
+# Financial data and modeling
+yfinance>=0.1.87
+statsmodels>=0.13.0
+
+# Visualization
+matplotlib>=3.5.0
+seaborn>=0.11.0
+plotly>=5.10.0
+
+# Optional: Interactive dashboards
+dash>=2.6.0
+streamlit>=1.12.0
+
+# Parallel processing
+joblib>=1.2.0
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=3.0.0
+pytest-mock>=3.8.0
+
+# Code quality
+black>=22.0.0
+flake8>=5.0.0
+mypy>=0.950
+
+# Documentation
+sphinx>=5.0.0
+sphinx-rtd-theme>=1.0.0
+
+# Development tools
+jupyter>=1.0.0
+ipykernel>=6.15.0
+
+# Data formats
+pyarrow>=8.0.0
+fastparquet>=0.8.0
+
+# Configuration
+pyyaml>=6.0
+python-dotenv>=0.19.0
+
+# Logging and monitoring
+loguru>=0.6.0
+
+# Optional: Advanced optimization
+cvxpy>=1.2.0
+gurobipy>=9.5.0  # Requires Gurobi license
+
+# Optional: Database connectivity
+sqlalchemy>=1.4.0
+psycopg2-binary>=2.9.0
+
+# Optional: Cloud storage
+boto3>=1.24.0
+azure-storage-blob>=12.12.0
+
+# Optional: Real-time data
+websocket-client>=1.4.0
+requests>=2.28.0
+
+# Optional: Performance profiling
+memory-profiler>=0.60.0
+line-profiler>=3.5.0
+
+# Optional: Machine learning extensions
+xgboost>=1.6.0
+lightgbm>=3.3.0
+
+# Optional: Time series analysis
+arch>=5.2.0
+pmdarima>=2.0.0
+
+# Optional: Risk management
+quantlib>=1.29
+pyfolio>=0.9.2
+
+# Optional: Backtesting frameworks
+backtrader>=1.9.76
+zipline-reloaded>=2.2.0
+
+# Optional: Interactive development
+ipywidgets>=7.7.0
+voila>=0.5.0
